@@ -1,0 +1,93 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'view_fish' %}">Fishes</a></li>
+                    <li class="breadcrumb-item active">Update Fish</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+
+                           <form method="post" action="{% url 'update_fish_action' %}" enctype="multipart/form-data" >
+
+                                {% csrf_token %}
+                               {% for f in fish %}
+                                    <input type="hidden" name="hid" value="{{f.id}}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="{{f.photo.url}}" width="100px" height="100px" alt="No pic"><br />
+                                <br />
+                                    
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label>Photo:</label>
+                                    <input type="file" name="photo" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Name:</label>
+                                    <input type="text" name="name" value="{{f.name}}" class="form-control" required>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label>Quantity:</label>
+                                    <input type="number" name="quantity" value="{{f.quantity}}" class="form-control" required>
+                                </div>
+                                 <div class="col-md-12">
+                                    <label>Price:</label>
+                                    <input type="number" name="price" value="{{f.price}}" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Start time:</label>
+                                    <input type="text" name="start_time" value="{{f.start_time}}" id="start_time" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>End time:</label>
+                                    <input type="text" name="end_time" value="{{f.end_time}}" id="end_time" class="form-control" required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn">Update</button>
+                                </div>
+
+                            </div>
+                               {% endfor %}
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+   {% if messages %}
+            {% for message in messages %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+            {% endfor %}
+        {% endif %}
+
+{% endblock %}
+
+

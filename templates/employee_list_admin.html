@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'view_owners' %}">Owners</a></li>
+                    <li class="breadcrumb-item active">Employees</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Cart Start -->
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8" style="margin:0 auto">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                {% if employee %}
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Fast name</th>
+                                            <th>Last name</th>
+                                            <th>Address</th>
+                                            <th>Date of birth</th>
+                                            <th>Email</th>
+                                            <th>Boat</th>
+                                             <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for v in employee %}
+                                        <tr>
+                                            <td>{{v.fname}}</td>
+                                            <td>{{v.lname}}</td>
+                                            <td>{{v.address}}</td>
+                                            <td>{{v.dob}}</td>
+                                            <td>{{v.email}}</td>
+                                            <td>{{v.boat_id.name}}</td>
+                                            <td>{{v.username}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                    <center><span>No data</span></center>
+                                 {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Cart End -->
+
+{% endblock %}
+  

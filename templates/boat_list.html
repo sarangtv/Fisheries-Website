@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Boats</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Cart Start -->
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8" style="margin:0 auto">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                {% if boat %}
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>name</th>
+                                            <th>regno</th>
+                                            <th>no_of_empl</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for v in boat %}
+                                        <tr>
+                                            <td>
+                                                <div class="img">
+                                                    <a href="{{v.photo.url}}"><img src="{{v.photo.url}}" alt="Image"></a>
+                                                    <p>{{v.name}}</p>
+                                                </div>
+                                            </td>
+                                            <td>{{v.regno}}</td>
+                                            <td>
+                                                {{v.no_of_empl}}
+                                            </td>
+                                            <td><a href="{% url 'Update_boat' v.id %}">Update</a></td>
+                                            <td><a href="{% url 'Delete_boat' v.id %}">Delete</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                    <center><span>No boats</span></center>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Cart End -->
+{% if messages %}
+            {% for message in messages %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+            {% endfor %}
+        {% endif %}
+{% endblock %}
+  

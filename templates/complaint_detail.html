@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'view_complaints' %}">Complaints</a></li>
+                    <li class="breadcrumb-item active">Complaint Details</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+                            
+                           
+                            <div class="row">
+                                
+                                
+                                <div class="col-md-12">
+                                    <label>Customer Name:&nbsp&nbsp&nbsp<span>{{cmp.cust_id.fname}}</span></label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Mobile:&nbsp&nbsp&nbsp<span>{{cmp.cust_id.mobile}}</span></label>
+                                    
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label>Subject:&nbsp&nbsp&nbsp<span>{{cmp.subject}}</span></label>
+                                    
+                                </div>
+                                 <div class="col-md-12">
+                                    <label>Complaint:&nbsp&nbsp&nbsp<span>{{cmp.complaint}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Date:&nbsp&nbsp&nbsp<span>{{cmp.date}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Time:&nbsp&nbsp&nbsp<span>{{cmp.time}}</span></label>
+                                    
+                                </div>
+                                
+                            </div>
+                               
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+
+                             <form method="post" action="{% url 'reply_action' %}">
+                                 {% csrf_token %}
+                                 <input type="hidden" name="hid" value="{{cmp.id}}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Subject:</label>
+                                    <input type="text" name="subject" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Reply:</label>
+                                    <textarea name="reply" rows="5" class="form-control" cols="5" required></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn">Submit</button>
+                                </div>
+
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+{% if messages %}
+        {% for message in messages %}
+            <script>
+                alert('{{message}}');
+            </script>
+        {% endfor %}
+    {% endif %}
+
+
+{% endblock %}
+
+

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'write_complaints' %}">Write Complaint</a></li>
+                    <li class="breadcrumb-item active">Replies</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+                            
+                           {% for r in reply %}
+                            <div class="row">
+                                
+                                
+                                
+                                <div class="col-md-12">
+                                    <label>Subject:&nbsp&nbsp&nbsp<span>{{r.subject}}</span></label>
+                                    
+                                </div>
+                                 <div class="col-md-12">
+                                    <label>Reply:&nbsp&nbsp&nbsp<span>{{r.reply}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Date:&nbsp&nbsp&nbsp<span>{{r.date}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Time:&nbsp&nbsp&nbsp<span>{{r.time}}</span></label>
+                                    
+                                </div>
+                                
+                            </div>
+                            <hr style="border-top:1px solid black"/>
+                              {% endfor %} 
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+{% endblock %}

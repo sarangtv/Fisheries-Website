@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3"">
+                           <div class="navbar bg-light" style="background:url(../static/web/img/ocean.jpg);background-size:450px;">
+                               
+                               <ul class="navbar-nav">
+                                 {% if 'oid' in request.session %}
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'add_boat'%}">Add boat </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'add_employee'%}"> Add employee </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'add_fish'%}"> Add fish </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'view_boats'%}"> View boats </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'view_employees'%}"> View Employees </a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'view_fish'%}"> View fish </a>
+                                </li>
+                                
+                               
+                                {% elif 'cid' in request.session %}
+                                 <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'view_auctions'  %}">View Auctions </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'my_auctions'  %}"> My Biddings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'write_complaints'  %}"> Write Complaints </a>
+                                </li>
+                                
+                                {% elif 'eid' in request.session %}
+                                 <li class="nav-item">       
+                                    <center><button class="alert" type="button" id="buttn"><span style="color:red;opacity:100;font-weight:bold">Alert!</span></button></center>
+                                </li>
+                                {% elif 'mid' in request.session %}
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'view_alerts'  %}"> View Alerts </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'view_auctions_manager'  %}"> View Auctions </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'view_complaints'  %}"> View Complaints </a>
+                                </li>
+                                {% elif 'aid' in request.session %}
+                                 <li class="nav-item">
+                                    <a class="nav-link" style="color:white" href="{% url 'view_owners'%}"> View Owners </a>
+                                </li>
+                                {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link"  style="color:white" href="{% url 'Owner_registration' %}"> Owner registration </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"  style="color:white" href="{% url 'Customer_registration' %}"> Customer registration </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                       </div>
+                            
+                    </div>
+                    <div class="col-md-6">
+                        <div class="header-slider normal-slider">
+                            <div class="header-slider-item">
+                                <img src="/static/web/img/boat.jpg" style="width:100%;height:100%" alt="Slider Image" />
+                                <div class="header-slider-caption" style="background:rgba(0,0,0,0.15)">
+                                    <p style="color:white;font-weight:bold;text-shadow:2px 2px 1px black;">Fresh fish at finger tips...</p>
+                                </div>
+                            </div>
+                            <div class="header-slider-item">
+                                <img src="/static/web/img/boat2.jpg" style="width:100%;height:100%" alt="Slider Image" />
+                                 <div class="header-slider-caption" style="background:rgba(0,0,0,0.2)">
+                                    <p style="color:white;font-weight:bold;text-shadow:2px 2px 1px black;">Its time to fetch fish that you wish</p>
+                                </div>
+                            </div>
+                            <div class="header-slider-item">
+                                <img src="/static/web/img/fish.jpg" style="width:100%;height:100%" alt="Slider Image" />
+                                 <div class="header-slider-caption" style="background:rgba(0,0,0,0.2)">
+                                    <p style="color:white;font-weight:bold;text-shadow:2px 2px 1px black;">Get the Best, Time to be Smart...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="header-img">
+                            <div class="img-item">
+                                <img src="/static/web/img/download4.jpeg" />
+                                <a class="img-text" href="" style="background:none">
+                                    <p style="color:white;font-weight:bold;text-shadow:2px 2px 1px black;">Best choice is out here!!!</p>
+                                </a>
+                            </div>
+                            <div class="img-item">
+                                <img src="/static/web/img/images.jpeg" />
+                                <a class="img-text" href="" style="background:none">
+                                    <p style="color:white;font-weight:bold;text-shadow:2px 2px 1px black;">All way round to you...</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Slider End -->
+
+        <!-- Brand Start -->
+
+        <!-- Brand End -->
+
+        <!-- Feature Start-->
+
+        <!-- Feature End-->
+
+        <!-- Category Start-->
+
+        <!-- Category End-->
+
+        <!-- Call to Action Start -->
+
+        <!-- Call to Action End -->
+
+        <!-- Featured Product Start -->
+
+        <!-- Featured Product End -->
+
+        <!-- Newsletter Start -->
+
+        <!-- Newsletter End -->
+
+        <!-- Recent Product Start -->
+
+
+        <!-- Review Start -->
+
+        <!-- Review End -->
+
+ <script src="/static/jquery-3.5.1.js"></script>
+    
+
+{% endblock %}

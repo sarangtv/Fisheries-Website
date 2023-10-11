@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Owners</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Cart Start -->
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8" style="margin:0 auto;">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>First name</th>
+                                            <th>Last name</th>
+                                            <th>Address</th>
+                                            <th>Date of birth</th>
+                                            <th>Mobile</th>
+                                            <th>Email</th>
+                                            <th>Username</th>
+                                            <th>Status</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for v in data %}
+                                        <tr>
+                                            <td>{{v.fname}}</td>
+                                            <td>{{v.lname}}</td>
+                                            <td>{{v.address}}</td>
+                                            <td>{{v.dob}}</td>
+                                            <td>{{v.mobile}}</td>
+                                             <td>{{v.email}}</td>
+                                            <td>{{v.username}}</td>
+                                            <td>{{v.status}}</td>
+                                            {% if v.status != "Approved" %}
+                                                <td><a href="{% url 'Approve' v.id %}">Approve</a></td>
+                                            {% else %}
+                                                    <td><a href="{% url 'Reject' v.id %}">Reject</a></td>
+                                                    <td><a href="{% url 'view_employees_admin' v.id %}">View Employees</a></td>
+                                            {% endif %}
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+                    </div>
+
+        <!-- Cart End -->
+{% if messages %}
+        {% for message in messages %}
+            <script>
+                alert('{{message}}');
+            </script>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+

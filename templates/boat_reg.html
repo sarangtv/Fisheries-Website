@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Boat Registration</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+
+                             <form method="post" action="{% url 'add_boat_action' %}" enctype="multipart/form-data">
+                                 {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Name:</label>
+                                    <input type="text" name="name" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Registration number:</label>
+                                 <input type="text" name="regno" class="form-control" required>
+                                 </div>
+                                <div class="col-md-12">
+                                    <label>Photo:</label>
+                                    <input type="file" name="photo" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Number of employees:</label>
+                                    <input type="text" name="no_of_empl" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn">Add</button>
+                                </div>
+
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    {% if messages %}
+            {% for message in messages %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+            {% endfor %}
+        {% endif %}
+
+{% endblock %}
+
+
+
+
+
+

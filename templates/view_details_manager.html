@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'view_auctions_manager' %}">Auctions</a></li>
+                    <li class="breadcrumb-item active">Auction Details</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+                            
+                           
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="{{fs.photo.url}}" width="100px" height="100px" alt="No image"><br /><br />
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label>Fish name:&nbsp&nbsp&nbsp<span>{{fs.name}}</span></label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Quantity(kg):&nbsp&nbsp&nbsp<span>{{fs.quantity}}</span></label>
+                                    
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label>Starting price(rs):&nbsp&nbsp&nbsp<span>{{fs.price}}</span></label>
+                                    
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label>Owner name:&nbsp&nbsp&nbsp<span>{{fs.owner_id.fname}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Owner mobile no.:&nbsp&nbsp&nbsp<span>{{fs.owner_id.mobile}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Owner email:&nbsp&nbsp&nbsp<span>{{fs.owner_id.email}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Owner address:&nbsp&nbsp&nbsp<span>{{fs.owner_id.address}}</span></label>
+                                    
+                                </div>
+                                 <div class="col-md-12">
+                                    <label>Start time:&nbsp&nbsp&nbsp<span>{{fs.start_time}}</span></label>
+                                    
+                                </div>
+                                 <div class="col-md-12">
+                                    <label>End time:&nbsp&nbsp&nbsp<span>{{fs.end_time}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Date:&nbsp&nbsp&nbsp<span>{{fs.date}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Auction Status:&nbsp&nbsp&nbsp<span>{{fs.status}}</span></label>
+                                    
+                                </div>
+                               
+                            </div>
+                               
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+{% endblock %}

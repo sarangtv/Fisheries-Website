@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Biddings</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Cart Start -->
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8" style="margin:0 auto">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                {% if fish %}
+                                <table class="table table-bordered" id="tab">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            
+                                            <th>Name:</th>
+                                            <th>Price:</th>
+                                            <th>Date:</th>
+                                            <th>Result Status:</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for v in fish %}
+                                        <tr>
+                                            <td>{{v.fish_id.name}}</td>
+                                            <td>{{v.price}}</td>
+                                            <td>{{v.fish_id.date}}</td>
+                                            <td>{{v.status}}</td>
+                                            <td><a href="{%  url 'view_details' v.id %}">View Details</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                <center>
+                                    <span>No Auctions</span>
+                                </center>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Cart End -->
+        {% if msg %}
+        <script>
+            alert('{{ msg }}');
+        </script>
+        {% endif %}
+
+<script src="/static/jquery-3.5.1.js"></script>
+<script>
+    function update_fish() {
+        $.ajax({
+            url: "{% url 'update_fish_status' %}",
+            data: { 'page': '2' },
+            success: function (data) {
+                $("#tab").html(data);
+            }
+
+        });
+    }
+    window.onload = setInterval(update_fish, 1000);
+</script>
+        
+{% endblock %}
+
+
+

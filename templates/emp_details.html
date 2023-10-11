@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'view_alerts' %}">Alerts</a></li>
+                    <li class="breadcrumb-item active">Employee Details</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+                          
+                           
+                            <div class="row">
+                                
+                                
+                                <div class="col-md-12">
+                                    <label>First name:&nbsp&nbsp<span>{{data.fname}}</span></label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Last name:&nbsp&nbsp<span>{{data.lname}}</span></label>
+                                    
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label>Address:&nbsp&nbsp<span>{{data.address}}</span></label>
+                                    
+                                </div>
+                                 
+                                <div class="col-md-12">
+                                    <label>Mobile number:&nbsp&nbsp<span>{{data.mobile}}</span></label>
+                                    
+                                </div>
+                                
+
+
+                            </div>
+                              
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+{% endblock %}

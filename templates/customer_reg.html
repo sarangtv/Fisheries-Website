@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Customer Registration</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+
+                           <form method="post" action="{% url 'Customer_reg_action' %}">
+                                {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>First name:</label>
+                                    <input type="text" name="fname" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Last name:</label>
+                                    <input type="text" name="lname" class="form-control"  required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Address:</label>
+                                    <textarea name="address" id="address" rows="5" class="form-control" required></textarea>
+                                </div>
+                                 <div class="col-md-12">
+                                    <label>DOB:</label>
+                                    <input type="date" name="dob" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Mobile number:</label>
+                                    <input type="text" name="mobile" pattern="^\d{10}$" title="Invalid mobile no." class="form-control" required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Username</label>
+                                    <input type="text" name="username" class="form-control" id="username" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Password</label>
+                                    <input type="password" name="password" id="password" pattern=".{6,}" class="form-control" title="Atleast 6 charecter required" required>
+                                </div>
+
+                                 <div class="col-md-12">
+                                    <label>Confirm Password:</label>
+                                    <td><input type="password" id="confirm_password" class="form-control" required></td>
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn">Submit</button>
+                                </div>
+
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+   {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert('{{message}}');
+            </script>
+        {% endfor %}
+    {% endif %}
+<script src="/static/jquery-3.5.1.js"></script>
+<script>
+    var password=document.getElementById("password");
+    var Confirm_password=document.getElementById("confirm_password");
+    function Validate_password()
+    {
+     if(password.value!=Confirm_password.value)
+      {
+       Confirm_password.setCustomValidity("Password mismatch");
+      }
+     else
+     {
+      Confirm_password.setCustomValidity("");
+     }
+    }
+    password.onchange = Validate_password;
+    Confirm_password.onkeyup = Validate_password;
+
+    $(document).ready(function () {
+        $("#username").change(function () {
+
+            $.ajax({
+                url: "{% url 'checkUsername' %}",
+                data: { 'username': $("#username").val(), 'emp': 'no' },
+                success: function (data) {
+                    if (data.status == "not ok") {
+                        alert("Username Already Exists!!!");
+                        $("#username").val('');
+                    }
+                }
+
+            });
+        });
+
+
+    });
+</script>
+{% endblock %}
+
+

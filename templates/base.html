@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+	<style>
+		a.logo-img{
+			text-shadow:2px 2px 3px black;
+		}
+		
+	    .alert
+	    {
+            box-shadow:0 9px #999;
+            border:none;
+            cursor:pointer;
+            outline:none;
+            background:rgba(200,200,200)
+            
+            
+            
+	    }
+	    .alert:hover
+	    {
+            background-color:#B0B0B0;
+            
+	    }
+	    .alert:active
+	     {
+            background-color:#B0B0B0;
+            box-shadow:0 5px #666;
+            transform:translateY(8px);
+	      }
+	    
+
+
+
+
+
+
+
+   
+
+
+
+	</style>
+    <head>
+        <meta charset="utf-8">
+        <title>Fisheries</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="eCommerce HTML Template Free Download" name="keywords">
+        <meta content="eCommerce HTML Template Free Download" name="description">
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="/static/web/lib/slick/slick.css" rel="stylesheet">
+        <link href="/static/web/lib/slick/slick-theme.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="/static/web/css/style.css" rel="stylesheet">
+	<link href="/static/mdtimepicker.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Top bar Start -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <i class="fa fa-envelope"></i>
+                        support@email.com
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="fa fa-phone-alt"></i>
+                        +012-345-6789
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top bar End -->
+        
+        <!-- Nav Bar Start -->
+        <div class="nav" style="height:50px">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                    <a href="#" class="navbar-brand">MENU</a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto">
+                            <a href="{% url 'index' %}" class="nav-item nav-link {% url 'index' as urlindex %}{% if request.path == urlindex %}active{% endif %}">Home</a>
+				{% url 'index' as urlindex %}{% if 'cid' not in request.session and 'eid' not in request.session and 'mid' not in request.session and 'oid' not in request.session and 'aid' not in request.session and request.path != urlindex %}
+                            <a href="{% url 'Customer_registration' %}" class="nav-item nav-link {% url 'Customer_registration' as urlc %}{% if request.path == urlc %}active{% endif %}">Customer registration</a>
+                            <a href="{% url 'Owner_registration' %}" class="nav-item nav-link {% url 'Owner_registration' as urlo %}{% if request.path == urlo %}active{% endif %}">Owner registration</a>
+				{% elif 'aid' in request.session and request.path != urlindex %}
+
+				<a href="{% url 'view_owners' %}" class="nav-item nav-link {% url 'view_owners' as urlowner %}{% if request.path == urlowner %}active{% endif %}">View Owners</a>
+				
+				{% elif 'mid' in request.session and request.path != urlindex %}
+				
+				<a href="{% url 'view_alerts' %}" class="nav-item nav-link {% url 'view_alerts' as urla %}{% if request.path == urla %}active{% endif %}">View Alerts</a>
+                            	<a href="{% url 'view_auctions_manager' %}" class="nav-item nav-link {% url 'view_auctions_manager' as urlv %}{% if request.path == urlv %}active{% endif %}">View Auctions</a>
+				<a href="{% url 'view_complaints' %}" class="nav-item nav-link {% url 'view_complaints' as urlc %}{% if request.path == urlc %}active{% endif %}">View Complaints</a>
+				
+				{% elif 'oid' in request.session and request.path != urlindex %}
+				
+				<a href="{% url 'add_boat' %}" class="nav-item nav-link {% url 'add_boat' as urlboat %}{% if request.path == urlboat %}active{% endif %}">Add boat</a>
+                            	<a href="{% url 'add_employee' %}" class="nav-item nav-link {% url 'add_employee' as urlemp %}{% if request.path == urlemp %}active{% endif %}">Add employee</a>
+				<a href="{% url 'add_fish' %}" class="nav-item nav-link {% url 'add_fish' as urlfish %}{% if request.path == urlfish %}active{% endif %}">Add fish</a>
+				<a href="{% url 'view_boats' %}" class="nav-item nav-link {% url 'view_boats' as urlvb %}{% if request.path == urlvb %}active{% endif %}">View boats</a>
+				<a href="{% url 'view_employees' %}" class="nav-item nav-link {% url 'view_employees' as urlve %}{% if request.path == urlve %}active{% endif %}">View Employees</a>
+				<a href="{% url 'view_fish' %}" class="nav-item nav-link {% url 'view_fish' as urlvf %}{% if request.path == urlvf %}active{% endif %}">View fish</a>
+
+				{% elif 'cid' in request.session and request.path != urlindex %}
+				
+				<a href="{% url 'view_auctions' %}" class="nav-item nav-link {% url 'view_auctions' as urlva %}{% if request.path == urlva %}active{% endif %}">View Auctions</a>
+                            	<a href="{% url 'my_auctions' %}" class="nav-item nav-link {% url 'my_auctions' as urlma %}{% if request.path == urlma %}active{% endif %}">My Biddings</a>
+				<a href="{% url 'write_complaints' %}" class="nav-item nav-link {% url 'write_complaints' as urlwc %}{% if request.path == urlwc %}active{% endif %}">Write Complaints</a>
+
+				{% endif %}
+                            </div>
+                        </div>
+                    
+			{% if 'cid' not in request.session and 'eid' not in request.session and 'mid' not in request.session and 'oid' not in request.session and 'aid' not in request.session %}
+                        <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+                                <a href="{% url 'Login' %}" class="btn">Login</a>
+
+                            </div>
+                        </div>
+			{% else %}
+                   {% if 'oid' in request.session %}
+                       
+                                <a href="{% url 'view_profile_owner' %}" style="margin-right:17px"><img src="/static/web/img/man-user.png" height="20px" width="20px" /></a>
+                           
+                    {% elif 'eid' in request.session %} 
+                                <a href="{% url 'view_profile_employee'  %}" style="margin-right:17px"><img src="/static/web/img/man-user.png" height="20px" width="20px" /></a>
+                    {% elif 'cid' in request.session %}
+                                <a href="{% url 'view_profile'  %}" style="margin-right:17px"><img src="/static/web/img/man-user.png" height="20px" width="20px" /></a>
+                    {% endif %}
+				 <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+                                <a href="{% url 'logout' %}" class="btn">Logout</a>
+
+                            </div>
+                        </div>
+			{% endif %}
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Nav Bar End -->      
+        
+        <!-- Bottom Bar Start -->
+        <div class="bottom-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a href="{% url 'index' %}" class="logo-img">
+                                <img src="/static/web/img/logoo.png" style="width:30%" alt="Logo"><span style="font-weight:bold;font-size:25px">&nbspFisheries</span>
+                            </a>
+                            
+                        </div>
+                        
+                    </div>
+                   
+
+                </div>
+            
+            </div>
+            
+        </div>
+        <!-- Bottom Bar End -->       
+        
+        <!-- Main Slider Start -->
+        {% block content %}
+        {% endblock %}
+	<br/>
+	<br/>
+        <!-- Footer Start -->
+        <div class="footer" style="background-color:black;color:white">
+            <div class="container-fluid">
+		
+                <div class="row">
+                    <div class="col-lg-3 col-md-6" style="margin:0 auto">
+                        <div class="footer-widget">
+                            <h2>Get in Touch</h2>
+                            <div class="contact-info">
+                                <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
+                                <p><i class="fa fa-envelope"></i>email@example.com</p>
+                                <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6" style="margin:0 auto">
+                        <div class="footer-widget">
+                            <h2>Follow Us</h2>
+                            <div class="contact-info">
+                                <div class="social">
+                                    <a href="" style="color:white"><i class="fab fa-twitter"></i></a>
+                                    <a href="" style="color:white"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="" style="color:white"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="" style="color:white"><i class="fab fa-instagram"></i></a>
+                                    <a href="" style="color:white"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+			
+                    <div class="col-lg-3 col-md-6" style="margin-left:10px" >
+                        <div class="footer-widget">
+                            <h2>Info</h2>
+                            <ul>
+                                <li><a href="#" style="color:white">About Us</a></li>
+                                <li><a href="#" style="color:white">Privacy Policy</a></li>
+                                <li><a href="#" style="color:white">Terms & Condition</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                </div>
+                </div>
+               
+            
+        </div>
+        <!-- Footer End -->
+        
+        <!-- Footer Bottom Start -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 copyright">
+                        <p>Copyright &copy; <a href=#">Fisheries</a>. All Rights Reserved</p>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Footer Bottom End -->       
+        
+        <!-- Back to Top -->
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/web/lib/easing/easing.min.js"></script>
+        <script src="/static/web/lib/slick/slick.min.js"></script>
+        
+        <!-- Template Javascript -->
+        <script src="/static/web/js/main.js"></script>
+	<script src="/static/mdtimepicker.js"></script>
+<script>
+   
+ $(document).ready(function () {
+        $('#start_time').mdtimepicker();
+       
+        $('#end_time').mdtimepicker();
+        $("#buttn").click(function () {
+            $.ajax({
+                url: "{% url 'alert_manager' %}",
+                success: function (data) {
+                    alert(data.msg);
+                }
+            });
+        });
+ });
+
+ 
+
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
+
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'view_fish' %}">Fishes</a></li>
+                     <li class="breadcrumb-item"><a href="{% url 'fish_view_auction' fish_id %}">Biddings</a></li>
+                    <li class="breadcrumb-item active">Customer Details</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+                            {% for v in customer %}
+                           
+                            <div class="row">
+                                
+                                
+                                <div class="col-md-12">
+                                    <label>First name:&nbsp&nbsp<span>{{v.fname}}</span></label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Last name:&nbsp&nbsp<span>{{v.lname}}</span></label>
+                                    
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label>Address:&nbsp&nbsp<span>{{v.address}}</span></label>
+                                    
+                                </div>
+                                 <div class="col-md-12">
+                                    <label>Date of birth:&nbsp&nbsp<span>{{v.dob}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Mobile number:&nbsp&nbsp<span>{{v.mobile}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Username:&nbsp&nbsp<span>{{v.username}}</span></label>
+                                    
+                                </div>
+
+
+                            </div>
+                               {% endfor %}
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+{% endblock %}

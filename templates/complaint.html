@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Write Complaints</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+
+                             <form method="post" action="{% url 'complaint_action' %}">
+                                 {% csrf_token %}
+                                
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Subject:</label>
+                                    <input type="text" name="subject" class="form-control" required>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Complaint:</label>
+                                    <textarea name="complaint" id="cpm" rows="5" class="form-control" required></textarea>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn">Submit</button>
+                                </div>
+
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% if complaints %}
+       <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+                            <center><label>Complaints Given</label></center>
+                                    
+                           {% for cmp in complaints %}
+                            <div class="row">
+                                
+                                    
+                               
+                                
+                                <div class="col-md-12">
+                                    <label>Subject:&nbsp&nbsp&nbsp<span>{{cmp.subject}}</span></label>
+                                    
+                                </div>
+                                 <div class="col-md-12">
+                                    <label>Complaint:&nbsp&nbsp&nbsp<span>{{cmp.complaint}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Date:&nbsp&nbsp&nbsp<span>{{cmp.date}}</span></label>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Time:&nbsp&nbsp&nbsp<span>{{cmp.time}}</span></label>
+                                    
+                                </div>
+                                {% if cmp.status == 'replied' %}
+                                
+                                <div class="col-md-12">
+                                    <a href="{% url 'viewReply' cmp.id %}" class="btn">View Reply</a>
+                                    
+                                </div>
+                                {% endif %}
+
+                            </div>
+                            <hr style="border-top:1px solid black"/>
+                             {% endfor %}  
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+   {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert('{{message}}');
+            </script>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+    

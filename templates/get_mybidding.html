@@ -1,0 +1,26 @@
+
+<table class="table table-bordered" id="tab">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            
+                                            <th>Name:</th>
+                                            <th>Price:</th>
+                                            <th>Date:</th>
+                                            <th>Result Status:</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for v in fish %}
+                                        <tr>
+                                            <td>{{v.fish_id.name}}</td>
+                                            <td>{{v.price}}</td>
+                                            <td>{{v.fish_id.date}}</td>
+                                            <td>{{v.status}}</td>
+                                            <td><a href="{%  url 'view_details' v.id %}">View Details</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+ </table>
+
+

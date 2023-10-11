@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Employees</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Cart Start -->
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8" style="margin:0 auto">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                {% if employee %}
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>First name</th>
+                                            <th>Last name</th>
+                                            <th>Address</th>
+                                               <th>Date of birth</th>
+                                            <th>Email</th>
+                                            <th>Boat</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for v in employee %}
+                                        <tr>
+                                             <td>{{v.fname}}</td>
+                                            <td>{{v.lname}}</td>
+                                            <td>{{v.address}}</td>
+                                             <td>{{v.dob}}</td>
+                                            <td>{{v.email}}</td>
+                                            <td>{{v.boat_id.name}}</td>
+                                            <td>{{v.username}}</td>
+                                            <td><span id="{{v.id}}" style="display:none">{{v.password}}</span>&nbsp<input type="checkbox" id="{{v.username}}" class="passhide" style="display:none" value="{{v.id}}"/><label for="{{v.username}}"><img style="padding-bottom:3px" src="/static/close.png" height="25px" width="25px"/></label></td>
+                                               <td><a href="{% url 'Delete_employee' v.id %}">Delete Employee</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                   {% else %}
+                                        <center><span>No employees</span></center>
+                                    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Cart End -->
+{% if messages %}
+            {% for message in messages %}
+                <script>
+                    alert('{{ message }}');
+                </script>
+            {% endfor %}
+        {% endif %}
+<script src="/static/jquery-3.5.1.js"></script>
+<script>
+    $(document).ready(function () {
+       
+        $(".passhide").click(function () {
+
+            if ($(this).is(':checked')) {
+                $("#" + $(this).val()).css("display", "inline-block");
+                $(this).closest('tr').find('img').attr('src', '/static/open.png')
+            }
+            else {
+                $("#" + $(this).val()).css("display", "none");
+                $(this).closest('tr').find('img').attr('src', '/static/close.png')
+            }
+        });
+    });
+</script>
+{% endblock %}
+  

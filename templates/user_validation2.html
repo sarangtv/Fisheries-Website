@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+
+                             <form method="post" action="{% url 'user_validation2_action' %}">
+                                 {% csrf_token %}
+                                 <input type="hidden" name="username" value="{{username}}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>First Name:</label>
+                                    <input type="text" name="fname" class="form-control" required>
+                                    
+                                </div>
+                                 <div class="col-md-12">
+                                    <label>Dob:</label>
+                                    <input type="date" name="dob" class="form-control" required>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Mobile no.</label>
+                                    <input type="text" name="mobile" class="form-control" required>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn">Submit</button>
+                                </div>
+
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+       
+
+   {% if msg %}
+    <script>
+        alert('{{ msg }}');
+    </script>
+    {% endif %}
+
+{% endblock %}

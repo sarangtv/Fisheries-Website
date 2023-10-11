@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Complaints</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Cart Start -->
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8" style="margin:0 auto;">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Customer Name</th>
+                                            <th>Subject</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for v in cmp %}
+                                    <tr>
+                                        <td>{{v.cust_id.fname}}</td>
+                                        <td>{{v.subject}}</td>
+                                        <td>{{v.date}}</td>
+                                        <td>{{v.time}}</td>
+                                        <td><a href="{% url 'complaint_detail' v.id %}">Show Complaint</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+                    </div>
+
+        <!-- Cart End -->
+
+{% endblock %}
+

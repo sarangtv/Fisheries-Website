@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+
+         <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'view_auctions' %}">Auctions</a></li>
+                    <li class="breadcrumb-item active">Bid</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Login Start -->
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+
+                             <form method="post" action="{% url 'bidding_action' %}">
+                                 {% csrf_token %}
+                                 <input type="hidden" value="{{fish_id}}" name="fish_id">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Price:</label>
+                                    <input type="text" name="price" class="form-control" required>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn">Submit</button>
+                                </div>
+
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="login">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6" style="margin:0 auto">
+
+                        <div class="register-form">
+
+                             
+                            <div class="row">
+                                <div class="col-md-12">
+                                <center><span style="font-weight:bold">Highest Bidding</span></center>
+                                    </div>
+                                {% if fsh %}
+                                <div class="col-md-12">
+                                    <label>Username:&nbsp&nbsp&nbsp<span>{{fsh.0.cust_id.username}}</span></label>
+                                    
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <label>Price:&nbsp&nbsp&nbsp<span style="font-weight:bold;color:red">{{fsh.0.price}}</span></label>
+                                </div>
+                                {% else %}
+                                <div class="col-md-12">
+                                    <center><span>No Bidding</span></center>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+   {% if msg %}
+    <script>
+        alert('{{ msg }}');
+    </script>
+    {% endif %}
+
+{% endblock %}
+    

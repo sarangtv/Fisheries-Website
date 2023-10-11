@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <!-- Breadcrumb Start -->
+        <div class="breadcrumb-wrap">
+            <div class="container-fluid">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Alerts</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Breadcrumb End -->
+
+        <!-- Cart Start -->
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8" style="margin:0 auto">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                {% if alert %}
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                           <th>Username</th>
+                                           <th>Date</th>
+                                           <th>Time</th>
+                                            <th></th>
+                                               <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for v in alert %}
+                                        <tr>
+                                            <td>
+                                                
+                                                   {{v.empl_id.username}}
+                                               
+                                            </td>
+                                            <td>{{v.date}}</td>
+                                            <td>
+                                                {{v.time}}
+                                            </td>
+                                            <td><a href="{% url 'alertEmployeeDetails' v.empl_id_id %}">Employee Details</a></td>
+                                            <td><a href="{% url 'readAlert' v.id %}">Read</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                                <center><span>No alerts</span></center>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Cart End -->
+
+{% endblock %}
+
+
+
+
+<table>
+    <tr>
+    <th>Username</th>
+    <th>Date</th>
+    <th>Time</th>
+    </tr>
+           {% for v in alert %}
+        <tr>
+            <td>{{v.empl_id.username}}</td>
+            <td>{{v.date}}</td>
+            <td>{{v.time}}</td>
+        </tr>
+           {% endfor %}
+
+</table>
